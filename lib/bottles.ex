@@ -17,11 +17,6 @@ defmodule Bottles do
     """
   end
 
-  defp bottles(units, 0) do
-    single = Enum.find(units, & &1.divider == 1)
-    "0 #{single.plural}"
-  end
-
   defp bottles(units, verse_number) do
     Counter.count(units, verse_number)
   end

@@ -12,4 +12,7 @@ defmodule Unit do
   def carton do
     %Unit{divider: 24, single: "carton", plural: "cartons"}
   end
+
+  def to_string(unit, 1), do: "1 #{unit.single}"
+  def to_string(unit, quantity), do: "#{quantity} #{unit.plural}"
 end

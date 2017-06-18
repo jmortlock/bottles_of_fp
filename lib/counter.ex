@@ -1,4 +1,11 @@
 defmodule Counter do
+  import Unit
+
+  def count(units, 0) do
+    single = Enum.find(units, & &1.divider == 1)
+    Unit.to_string(single, 0)
+  end
+
   def count(units, value) do
     Enum.map_reduce(units, value, fn(x, acc) ->
       quantity = whole_units(x, acc)
@@ -14,6 +21,5 @@ defmodule Counter do
   end
 
   defp build_str(0, _), do: nil
-  defp build_str(1, unit), do: "1 #{unit.single}"
-  defp build_str(quantity, unit), do: "#{quantity} #{unit.plural}"
+  defp build_str(quantity, unit), do: Unit.to_string(unit, quantity)
 end
