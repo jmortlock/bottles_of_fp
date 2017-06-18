@@ -9,7 +9,7 @@ defmodule Counter do
   def count(units, value) do
     Enum.map_reduce(units, value, fn(x, acc) ->
       quantity = whole_units(x, acc)
-      { build_str(quantity, x), acc - (quantity * x.divider) }
+      { build_str(x, quantity), acc - (quantity * x.divider) }
     end)
     |> elem(0)
     |> Enum.reject(& is_nil(&1))
@@ -20,6 +20,6 @@ defmodule Counter do
     Integer.floor_div(value, unit.divider)
   end
 
-  defp build_str(0, _), do: nil
-  defp build_str(quantity, unit), do: Unit.to_string(unit, quantity)
+  defp build_str(_, 0), do: nil
+  defp build_str(unit, quantity), do: Unit.to_string(unit, quantity)
 end
