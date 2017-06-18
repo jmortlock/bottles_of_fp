@@ -3,7 +3,7 @@ defmodule BottlesTest do
   doctest Bottles
 
   test "sing a song" do
-    Bottles.sing_me_a_song(10)
+    Bottles.sing_me_a_song([Unit.carton, Unit.six_pack, Unit.single], 99)
     |> IO.puts
   end
 end
